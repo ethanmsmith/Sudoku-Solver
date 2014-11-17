@@ -91,9 +91,9 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
 
   def valueAt(row: Int, col: Int): Option[Int] = {
     available.get((row, col)).get match {
+      case Nil => Some(99)
       case x::Nil => Some(x)
       case x::y => None
-      case _ => None
     }
   }
 
@@ -131,7 +131,36 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
 
   def place(row: Int, col: Int, value: Int): Board = {
     require(availableValuesAt(row, col).contains(value))
-    throw new UnsupportedOperationException("not implemented")
+    var board = available
+    var kv = ((row, col), List(value))
+    board += (kv)
+    val peerList = Solution.peers(row,col)
+    for(peer <- peerList) {
+      var pSet: Set[Int] = board.get(peer).get.toSet
+      pSet -= value
+      val pKv = (peer, pSet.toList)
+      board += pKv
+      available.get(peer).get match {
+        case Nil => Unit
+        case x::Nil => removeFromPeers(peer, x)
+        case x::y => Unit
+      }
+    }
+
+    /*def removeFromPeers(peer: (Int, Int), value: Int) = {
+      val row = peer match{case (a,b) => a}
+      val col = peer match{case (a,b) => b}
+      for(key <- Solution.peers(row, col)) {
+        val pRow = key match{case (a,b) => a}
+        val pCol = key match{case (a,b) => b}
+        var peerList: Set[Int] = available.get(key).get.toSet
+        peerList -= value
+        var rmKv = (key,peerList.toList)
+        board += rmKv
+      }
+    }*/
+
+    new Board(board)
   }
 
   // You can return any Iterable (e.g., Stream)
@@ -149,5 +178,22 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
 
   override def toString = {
     available.toString
+  }
+
+  def toString2(): String = {
+    var str: String = ""
+    for(i <- 0 to 8){
+      if(i == 0 || i == 3 || i == 6) str = str + "-------------\n"
+        for(j <- 0 to 8){
+          if(j == 0 || j == 3 || j == 6) str = str + "|"
+          val ls:List[Int] = available((i, j))
+          if(ls.size == 1) str = str + ls(0)
+          else str = str + "."
+          if(j == 8) str = str + "|"
+        }
+        str = str + "\n"
+        if(i == 8) str = str + "-------------\n"
+      }
+      return str
   }
 }

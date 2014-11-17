@@ -65,3 +65,12 @@ compile
 test
 tets
 test
+compile
+test
+compile
+test
+compile
+test
+compile
+test
+exit
