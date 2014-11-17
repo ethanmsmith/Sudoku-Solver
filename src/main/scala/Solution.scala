@@ -95,11 +95,23 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
   }
 
   def isSolved(): Boolean = {
-    throw new UnsupportedOperationException("not implemented")
+    for ((k,v) <- available) {
+      v match {
+        case x::Nil => Unit
+        case x::y => return false
+      }
+    }
+    return true
   }
 
   def isUnsolvable(): Boolean = {
-    throw new UnsupportedOperationException("not implemented")
+    for((k,v) <- available) {
+      v match {
+        case Nil => return true
+        case x::y => Unit
+      }
+    }
+    return false
   }
 
   def place(row: Int, col: Int, value: Int): Board = {
