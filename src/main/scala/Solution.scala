@@ -38,8 +38,11 @@ object Solution extends SudokuLike {
         for(peer <- peersLst) {
           board.get(peer) match {
             case None => lstTmp
-            case Some(x) => x match { case y::Nil => lstTmp -= y
-                                      case y::z => lstTmp}
+            case Some(x) => x match { 
+              case y::Nil => lstTmp -= y
+              case y::z => lstTmp
+              case _ => Unit
+            }
             case _ => Unit
           } 
         }
@@ -97,6 +100,7 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
   def isSolved(): Boolean = {
     for ((k,v) <- available) {
       v match {
+        case Nil => return false
         case x::Nil => Unit
         case x::y => return false
       }
@@ -109,6 +113,17 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
       v match {
         case Nil => return true
         case x::y => Unit
+      }
+      var peerList = k match {case (a,b) => Solution.peers(a,b)}
+      for(peer <- peerList) {
+        var kRow = 0
+        var kCol = 0
+        k match {case (a,b) => kRow = a; kCol = b}
+        if(valueAt(kRow, kCol) != None && available.get(peer) != None) {
+          if(v == available.get(peer).get) {
+            return true
+          }
+        }
       }
     }
     return false
