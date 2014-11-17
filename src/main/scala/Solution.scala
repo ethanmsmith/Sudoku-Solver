@@ -33,7 +33,7 @@ object Solution extends SudokuLike {
       if(v == List(0)) {
         k match {
           case (a,b) => peersLst = peers(a,b)
-          println("peers of" + k + peersLst)
+          //println("peers of" + k + peersLst)
         }
         for(peer <- peersLst) {
           board.get(peer) match {
@@ -87,7 +87,11 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
   }
 
   def valueAt(row: Int, col: Int): Option[Int] = {
-    throw new UnsupportedOperationException("one")
+    available.get((row, col)).get match {
+      case x::Nil => Some(x)
+      case x::y => None
+      case _ => None
+    }
   }
 
   def isSolved(): Boolean = {
