@@ -46,9 +46,9 @@ object Solution extends SudokuLike {
             case Some(x) => x match {
               case y::Nil => lstTmp -= y
               case y::z => lstTmp
-              case _ => Unit
+              case _ => ()
             }
-            case _ => Unit
+            case _ => ()
           } 
         }
 
@@ -113,7 +113,7 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
     for((k,v) <- available) {
       v match {
         case Nil => return true
-        case x::y => Unit
+        case x::y => ()
       }
       var peerList = k match {case (a,b) => Solution.peers(a,b)}
       for(peer <- peerList) {
@@ -142,9 +142,9 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
       val pKv = (peer, pSet.toList)
       board += pKv
       board.get(peer).get match {
-        case Nil => Unit
+        case Nil => ()
         case x::Nil => remove(peer, x)
-        case x::y => Unit
+        case x::y => ()
       }
     }
     def remove(peer: (Int, Int), value: Int) = {
