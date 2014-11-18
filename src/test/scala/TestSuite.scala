@@ -36,8 +36,10 @@ class TestSuite extends org.scalatest.FunSuite {
 	test("Test Solved"){
 		val fromCS121_1 = //fail
 		parse("85....4.1......67...21....3..85....7...982...3....15..5....43...37......2.9....58")
+		println(fromCS121_1.sizeOf)
 		val fromCS121_2 = //solved
 		parse(".1.....2..3..9..1656..7...33.7..8..........89....6......6.254..9.5..1..7..3.....2")
+		println(fromCS121_2.sizeOf)
 		val cmpsci220_1 = //fail
 		parse("2...8.3...6..7..84.3.5..2.9...1.54.8.........4.27.6...3.1..7.4.72..4..6...4.1...3")
 		val cmpsci220_2 = 
@@ -95,9 +97,9 @@ class TestSuite extends org.scalatest.FunSuite {
 		val sudoku20vHard = // solved
 		parse(".4.3.7.9.....9.1..89.1..5..2.6....1.9..6.8..5.1....6.9..9..5.71..8.6.....2.9.1.4.")
 
-		val sudoku = sudoku20vHard
-		println(sudoku.toString2)
-		val Some(sudokuSolution) = sudoku.solve
-		println(sudokuSolution.toString2)
+		// val sudoku = sudoku20vHard
+		// println(sudoku.toString2)
+		// val Some(sudokuSolution) = sudoku.solve
+		// println(sudokuSolution.toString2)
 	}
 }

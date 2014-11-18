@@ -24,7 +24,11 @@ object Solution extends SudokuLike {
       else if(col != 8 && row !=8) {
         parseRecurse(str.substring(1), row, col+1)
       }
+      else if(row == 8 && col != 8) {
+        parseRecurse(str.substring(1), row, col+1)
+      }
     }
+
     parseRecurse(str, 0, 0)
     for((k,v) <- board) {
       var peersLst: List[(Int, Int)] = List()
@@ -47,7 +51,7 @@ object Solution extends SudokuLike {
           } 
         }
 
-      board = board + ((k, lstTmp.toList))
+      board += ((k, lstTmp.toList))
       }
     
     }
@@ -142,23 +146,23 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
       board += pKv
       available.get(peer).get match {
         case Nil => Unit
-        case x::Nil => removeFromPeers(peer, x)
+        case x::Nil => remove(peer, x)
         case x::y => Unit
       }
     }
-
-    /*def removeFromPeers(peer: (Int, Int), value: Int) = {
-      val row = peer match{case (a,b) => a}
-      val col = peer match{case (a,b) => b}
-      for(key <- Solution.peers(row, col)) {
-        val pRow = key match{case (a,b) => a}
-        val pCol = key match{case (a,b) => b}
-        var peerList: Set[Int] = available.get(key).get.toSet
-        peerList -= value
-        var rmKv = (key,peerList.toList)
-        board += rmKv
+    def remove(peer: (Int, Int), value: Int) = {
+      var row = 0
+      var col = 0
+      peer match {
+        case (a,b) => row = a; col = b
       }
-    }*/
+      val peerList = Solution.peers(row, col).toSet
+      for(p <- peerList) {
+        var rK = board.get(p).get.toSet - value
+        var rKv = (p, rK.toList)
+        board += rKv
+      }
+    }
 
     new Board(board)
   }
@@ -176,6 +180,8 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
     throw new UnsupportedOperationException("not implemented")
   }
 
+
+  //#######NOTHING LEFT TO CODE#########
   override def toString = {
     available.toString
   }
@@ -195,5 +201,9 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
         if(i == 8) str = str + "-------------\n"
       }
       return str
+  }
+
+  def sizeOf = {
+    available.size
   }
 }
