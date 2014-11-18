@@ -34,12 +34,12 @@ class TestSuite extends org.scalatest.FunSuite {
 		assert((board01.place(1,0,3)).valueAt(1,0) == Some(3))
 	}
 
-	test("solved works for solved board") {
-		val sudoku = board01
-		println(sudoku.toString2)
-		val Some(sudokuSolution) = board01.solve
-		println(sudokuSolution.toString2)
-	}
+	// test("solved works for solved board") {
+	// 	val sudoku = board01
+	// 	println(sudoku.toString2)
+	// 	val Some(sudokuSolution) = board01.solve
+	// 	println(sudokuSolution.toString2)
+	// }
 
 	test("solve for easy") {
 		val sudoku = board_easy

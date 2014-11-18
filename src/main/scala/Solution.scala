@@ -226,15 +226,17 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
     if(isSolved) {
       return Some(this)
     }
-    for(boards <- this.nextStates) {
-      if(boards.isUnsolvable) {
-        Unit
+    else {
+      for(boards <- this.nextStates) {
+        if(boards.isUnsolvable) {
+          Unit
+        }
+        else{
+          boards.solve
+        }
       }
-      else{
-        boards.solve
-      }
+      return None
     }
-    return None
   }
 
   //::::::::::::::::NOTHING LEFT TO CODE::::::::::::::::
