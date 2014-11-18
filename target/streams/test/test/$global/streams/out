@@ -1,39 +1,60 @@
 [0m[[0mdebug[0m] [0mForking tests - parallelism = false[0m
 [0m[[0mdebug[0m] [0mCreate a single-thread test executor[0m
 [0m[[0mdebug[0m] [0mRunner for sbt.FrameworkWrapper produced 0 initial tasks for 0 tests.[0m
-[0m[[0mdebug[0m] [0mRunner for org.scalatest.tools.Framework produced 3 initial tasks for 3 tests.[0m
-[0m[[0mdebug[0m] [0m  Running TaskDef(GradedTestSuiteTwo, sbt.ForkMain$SubclassFingerscan@16250625, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunner for org.scalatest.tools.Framework produced 4 initial tasks for 4 tests.[0m
+[0m[[0mdebug[0m] [0m  Running TaskDef(GradedTestSuiteTwo, sbt.ForkMain$SubclassFingerscan@3c63b6fc, false, [SuiteSelector])[0m
 [0m[[0minfo[0m] [0m[32mGradedTestSuiteTwo:[0m[0m
 [0m[[0minfo[0m] [0m[32m- board is solvable[0m[0m
 [0m[[0minfo[0m] [0m[32m- board with duplicate values isUnsolvable[0m[0m
 [0m[[0minfo[0m] [0m[32m- isSolved returns true for legitimately solved board[0m[0m
 [0m[[0minfo[0m] [0m[32m- isSolved returns false for incomplete board[0m[0m
 [0m[[0mdebug[0m] [0m    Produced 0 nested tasks and 4 events.[0m
-[0m[[0mdebug[0m] [0m  Running TaskDef(GradedTestSuite, sbt.ForkMain$SubclassFingerscan@7e775d63, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0m  Running TaskDef(GradedTestSuite, sbt.ForkMain$SubclassFingerscan@34b479d4, false, [SuiteSelector])[0m
 [0m[[0minfo[0m] [0m[32mGradedTestSuite:[0m[0m
 [0m[[0minfo[0m] [0m[32m- valueAt works for a very basic board[0m[0m
 [0m[[0minfo[0m] [0m[32m- parse works for sample string assuming the above valueAt works[0m[0m
 [0m[[0minfo[0m] [0m[32m- peers works for a simple board[0m[0m
 [0m[[0minfo[0m] [0m[32m- valueAt works for a non-valid board2[0m[0m
 [0m[[0mdebug[0m] [0m    Produced 0 nested tasks and 4 events.[0m
-[0m[[0mdebug[0m] [0m  Running TaskDef(TestSuite, sbt.ForkMain$SubclassFingerscan@5a0d376d, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0m  Running TaskDef(TestSuite, sbt.ForkMain$SubclassFingerscan@2fcc2f57, false, [SuiteSelector])[0m
 [0m[[0minfo[0m] [0m[32mTestSuite:[0m[0m
 [0m[[0minfo[0m] [0m[32m- parse[0m[0m
 [0m[[0minfo[0m] [0m[32m- full board isSolved for some invaled, but fully filled board[0m[0m
 [0m[[0minfo[0m] [0m[32m- board isUnsolvable[0m[0m
 [0m[[0minfo[0m] [0m[32m- given test boards are solvable[0m[0m
 [0m[[0minfo[0m] [0m[32m- place works correctly[0m[0m
+[0m[[0minfo[0m] [0m[32m- solved works for solved board[0m[0m
+[0m[[0minfo[0m] [0m[31m- solve for easy *** FAILED ***[0m[0m
+[0m[[0minfo[0m] [0m[31m  scala.MatchError: None (of class scala.None$)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at TestSuite$$anonfun$7.apply$mcV$sp(TestSuite.scala:47)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at TestSuite$$anonfun$7.apply(TestSuite.scala:44)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at TestSuite$$anonfun$7.apply(TestSuite.scala:44)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at org.scalatest.Transformer$$anonfun$apply$1.apply$mcV$sp(Transformer.scala:22)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at org.scalatest.OutcomeOf$class.outcomeOf(OutcomeOf.scala:85)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at org.scalatest.Transformer.apply(Transformer.scala:22)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at org.scalatest.Transformer.apply(Transformer.scala:20)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at org.scalatest.FunSuiteLike$$anon$1.apply(FunSuiteLike.scala:166)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at org.scalatest.Suite$class.withFixture(Suite.scala:1122)[0m[0m
+[0m[[0minfo[0m] [0m[31m  ...[0m[0m
 [0m[[0minfo[0m] [0m[32m- Test Solved[0m[0m
-[0m[[0mdebug[0m] [0m    Produced 0 nested tasks and 6 events.[0m
+[0m[[0mdebug[0m] [0m    Produced 0 nested tasks and 8 events.[0m
+[0m[[0mdebug[0m] [0m  Running TaskDef(TrivialTestSuite, sbt.ForkMain$SubclassFingerscan@62110ebb, false, [SuiteSelector])[0m
+[0m[[0minfo[0m] [0m[32mTrivialTestSuite:[0m[0m
+[0m[[0minfo[0m] [0m[32m- The solution object must be defined[0m[0m
+[0m[[0mdebug[0m] [0m    Produced 0 nested tasks and 1 events.[0m
 [0m[[0mdebug[0m] [0mSummary for ScalaCheck not available.[0m
 [0m[[0minfo[0m] [0mScalaTest[0m
-[0m[[0minfo[0m] [0m[36mRun completed in 887 milliseconds.[0m[0m
-[0m[[0minfo[0m] [0m[36mTotal number of tests run: 14[0m[0m
-[0m[[0minfo[0m] [0m[36mSuites: completed 3, aborted 0[0m[0m
-[0m[[0minfo[0m] [0m[36mTests: succeeded 14, failed 0, canceled 0, ignored 0, pending 0[0m[0m
-[0m[[0minfo[0m] [0m[32mAll tests passed.[0m[0m
-[0m[[0minfo[0m] [0mPassed: Total 14, Failed 0, Errors 0, Passed 14[0m
+[0m[[0minfo[0m] [0m[36mRun completed in 1 second, 280 milliseconds.[0m[0m
+[0m[[0minfo[0m] [0m[36mTotal number of tests run: 17[0m[0m
+[0m[[0minfo[0m] [0m[36mSuites: completed 4, aborted 0[0m[0m
+[0m[[0minfo[0m] [0m[36mTests: succeeded 16, failed 1, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0minfo[0m] [0m[31m*** 1 TEST FAILED ***[0m[0m
+[0m[[31merror[0m] [0mFailed: Total 17, Failed 1, Errors 0, Passed 16[0m
 [0m[[0mdebug[0m] [0mPassed tests:[0m
 [0m[[0mdebug[0m] [0m	GradedTestSuiteTwo[0m
-[0m[[0mdebug[0m] [0m	TestSuite[0m
+[0m[[0mdebug[0m] [0m	TrivialTestSuite[0m
 [0m[[0mdebug[0m] [0m	GradedTestSuite[0m
+[0m[[31merror[0m] [0mFailed tests:[0m
+[0m[[31merror[0m] [0m	TestSuite[0m
+[0m[[31merror[0m] [0m(test:[31mtest[0m) sbt.TestsFailedException: Tests unsuccessful[0m

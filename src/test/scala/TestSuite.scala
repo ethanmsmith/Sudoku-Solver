@@ -7,6 +7,8 @@ class TestSuite extends org.scalatest.FunSuite {
 	val puz1 = ".43.8.25.6.............1.949....4.7....6.8....1.2....382.5.............5.34.9.71."
 	val puz2 = "2...8.3...6..7..84.3.5..2.9...1.54.8.........4.27.6...3.1..7.4.72..4..6...4.1...3"
 	val board01 = parse(".89742361.12986475647315289268493517493157826751268943936821754124579638875634192")
+	val board_easy = parse(".6.3..8.4537.9.....4...63.7.9..51238.........71362..4.3.64...1.....6.5231.2..9.8.")
+	
 	test("parse") {
 		assert(parse("..3.2.6..9..3.5..1..18.64....81.29..7.......8..67.82....26.95..8..2.3..9..5.1.3..").valueAt(1,0) == Some(9))
 	}
@@ -27,19 +29,30 @@ class TestSuite extends org.scalatest.FunSuite {
 	}
 
 	test("place works correctly") {
-		println(board01.valueAt(0,0))
 		assert((board01.place(0,0,5)).valueAt(0,0) == Some(5))
-		println(board01.valueAt(1,0))
+		assert((board01.place(0,0,5)).valueAt(1,0) == Some(3))
 		assert((board01.place(1,0,3)).valueAt(1,0) == Some(3))
+	}
+
+	test("solved works for solved board") {
+		val sudoku = board01
+		println(sudoku.toString2)
+		val Some(sudokuSolution) = board01.solve
+		println(sudokuSolution.toString2)
+	}
+
+	test("solve for easy") {
+		val sudoku = board_easy
+		println(sudoku.toString2)
+		val Some(sudokuSolution) = board_easy.solve
+		println(sudokuSolution.toString2)
 	}
 
 	test("Test Solved"){
 		val fromCS121_1 = //fail
 		parse("85....4.1......67...21....3..85....7...982...3....15..5....43...37......2.9....58")
-		println(fromCS121_1.sizeOf)
 		val fromCS121_2 = //solved
 		parse(".1.....2..3..9..1656..7...33.7..8..........89....6......6.254..9.5..1..7..3.....2")
-		println(fromCS121_2.sizeOf)
 		val cmpsci220_1 = //fail
 		parse("2...8.3...6..7..84.3.5..2.9...1.54.8.........4.27.6...3.1..7.4.72..4..6...4.1...3")
 		val cmpsci220_2 = 
@@ -96,8 +109,8 @@ class TestSuite extends org.scalatest.FunSuite {
 		parse("....3..712..8.7..98..1.4..29.26..5......8......8..94.66..9.5..43..4.8..514..2....")
 		val sudoku20vHard = // solved
 		parse(".4.3.7.9.....9.1..89.1..5..2.6....1.9..6.8..5.1....6.9..9..5.71..8.6.....2.9.1.4.")
-
-		// val sudoku = sudoku20vHard
+		println(fromCS121_1.nextStates.length)
+		// val sudoku = fromCS121_1
 		// println(sudoku.toString2)
 		// val Some(sudokuSolution) = sudoku.solve
 		// println(sudokuSolution.toString2)

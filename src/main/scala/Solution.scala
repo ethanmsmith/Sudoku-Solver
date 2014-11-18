@@ -1,4 +1,5 @@
 import cmpsci220.hw.sudoku._
+import scala.util.control.Breaks._
 
 object Solution extends SudokuLike {
   type T = Board
@@ -144,7 +145,7 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
       pSet -= value
       val pKv = (peer, pSet.toList)
       board += pKv
-      available.get(peer).get match {
+      board.get(peer).get match {
         case Nil => Unit
         case x::Nil => remove(peer, x)
         case x::y => Unit
@@ -172,20 +173,76 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
     if (isUnsolvable()) {
       return List()
     }
-
-    throw new UnsupportedOperationException("not implemented")
+    var altBoard = available
+    var boardBoard = new Board(altBoard)
+    var boardList: List[Board] = List()
+    // define some List       :: DONE
+    //   for each empty spot  :: DONE
+    //     and each empty value
+    //       append to list this.place(row, column, value)
+    for((k,v) <- available) {
+      var row = 0
+      var col = 0
+      k match {
+        case (a,b) => row = a; col = b
+      }
+      if(v.length > 1) {
+        for(num <- v) {
+          if(!boardBoard.place(row,col,num).isUnsolvable) {
+            boardList = boardList ++ List(boardBoard.place(row, col, num))
+          }
+        }
+      }
+    }
+    boardList
   }
+
+  // def nextValidStates(): List[Board] = { 
+  //   if (isUnsolvable) {
+  //     return List()
+  //   }
+  //   var altBoard = available
+  //   var boardBoard = new Board(altBoard)
+  //   var boardList: List[Board] = List()
+  //   for((k,v) <- available) {
+  //     var row = 0
+  //     var col = 0
+  //     k match {
+  //       case (a,b) => row = a; col = b
+  //     }
+  //     if(v.length > 1) {
+  //       for(num <- v) {
+  //         if(!boardBoard.place(row,col,num).isUnsolvable) {
+  //           boardList = boardList ++ List(boardBoard.place(row, col, num))
+  //         }
+  //       }
+  //     }
+  //     break
+  //   }
+  //   return boardList
+  // }
 
   def solve(): Option[Board] = {
-    throw new UnsupportedOperationException("not implemented")
+    if(isSolved) {
+      return Some(this)
+    }
+    for(boards <- this.nextStates) {
+      if(boards.isUnsolvable) {
+        Unit
+      }
+      else{
+        boards.solve
+      }
+    }
+    return None
   }
 
-
-  //#######NOTHING LEFT TO CODE#########
+  //::::::::::::::::NOTHING LEFT TO CODE::::::::::::::::
   override def toString = {
     available.toString
   }
 
+  //student on Piazza
   def toString2(): String = {
     var str: String = ""
     for(i <- 0 to 8){
