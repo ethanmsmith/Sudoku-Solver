@@ -2,28 +2,30 @@
 [0m[[0mdebug[0m] [0mCreate a single-thread test executor[0m
 [0m[[0mdebug[0m] [0mRunner for sbt.FrameworkWrapper produced 0 initial tasks for 0 tests.[0m
 [0m[[0mdebug[0m] [0mRunner for org.scalatest.tools.Framework produced 4 initial tasks for 4 tests.[0m
-[0m[[0mdebug[0m] [0m  Running TaskDef(GradedTestSuiteTwo, sbt.ForkMain$SubclassFingerscan@1a10548f, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0m  Running TaskDef(GradedTestSuiteTwo, sbt.ForkMain$SubclassFingerscan@452ab959, false, [SuiteSelector])[0m
 [0m[[0minfo[0m] [0m[32mGradedTestSuiteTwo:[0m[0m
 [0m[[0minfo[0m] [0m[32m- board is solvable[0m[0m
 [0m[[0minfo[0m] [0m[32m- board with duplicate values isUnsolvable[0m[0m
 [0m[[0minfo[0m] [0m[32m- isSolved returns true for legitimately solved board[0m[0m
 [0m[[0minfo[0m] [0m[32m- isSolved returns false for incomplete board[0m[0m
 [0m[[0mdebug[0m] [0m    Produced 0 nested tasks and 4 events.[0m
-[0m[[0mdebug[0m] [0m  Running TaskDef(GradedTestSuite, sbt.ForkMain$SubclassFingerscan@7e4111b7, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0m  Running TaskDef(TrivialTestSuite, sbt.ForkMain$SubclassFingerscan@674d029e, false, [SuiteSelector])[0m
+[0m[[0minfo[0m] [0m[32mTrivialTestSuite:[0m[0m
+[0m[[0minfo[0m] [0m[32m- The solution object must be defined[0m[0m
+[0m[[0mdebug[0m] [0m    Produced 0 nested tasks and 1 events.[0m
+[0m[[0mdebug[0m] [0m  Running TaskDef(GradedTestSuite, sbt.ForkMain$SubclassFingerscan@2d2fbb8f, false, [SuiteSelector])[0m
 [0m[[0minfo[0m] [0m[32mGradedTestSuite:[0m[0m
 [0m[[0minfo[0m] [0m[32m- valueAt works for a very basic board[0m[0m
 [0m[[0minfo[0m] [0m[32m- parse works for sample string assuming the above valueAt works[0m[0m
 [0m[[0minfo[0m] [0m[32m- peers works for a simple board[0m[0m
 [0m[[0minfo[0m] [0m[32m- valueAt works for a non-valid board2[0m[0m
 [0m[[0mdebug[0m] [0m    Produced 0 nested tasks and 4 events.[0m
-[0m[[0mdebug[0m] [0m  Running TaskDef(TrivialTestSuite, sbt.ForkMain$SubclassFingerscan@412f17d8, false, [SuiteSelector])[0m
-[0m[[0minfo[0m] [0m[32mTrivialTestSuite:[0m[0m
-[0m[[0minfo[0m] [0m[32m- The solution object must be defined[0m[0m
-[0m[[0mdebug[0m] [0m    Produced 0 nested tasks and 1 events.[0m
-[0m[[0mdebug[0m] [0m  Running TaskDef(TestSuite, sbt.ForkMain$SubclassFingerscan@ee6d585, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0m  Running TaskDef(TestSuite, sbt.ForkMain$SubclassFingerscan@455d78eb, false, [SuiteSelector])[0m
 [0m[[0minfo[0m] [0m[32mTestSuite:[0m[0m
 [0m[[0minfo[0m] [0m[32m- parse[0m[0m
 [0m[[0minfo[0m] [0m[32m- full board isSolved for some invaled, but fully filled board[0m[0m
 [0m[[0minfo[0m] [0m[32m- board isUnsolvable[0m[0m
 [0m[[0minfo[0m] [0m[32m- given test boards are solvable[0m[0m
 [0m[[0minfo[0m] [0m[32m- place works correctly[0m[0m
+[0m[[0minfo[0m] [0m[32m- solved works for solved board[0m[0m
+[0m[[0minfo[0m] [0m[32m- solve for easy[0m[0m

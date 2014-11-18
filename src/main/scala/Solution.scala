@@ -43,7 +43,7 @@ object Solution extends SudokuLike {
         for(peer <- peersLst) {
           board.get(peer) match {
             case None => lstTmp
-            case Some(x) => x match { 
+            case Some(x) => x match {
               case y::Nil => lstTmp -= y
               case y::z => lstTmp
               case _ => Unit
@@ -96,7 +96,7 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
 
   def valueAt(row: Int, col: Int): Option[Int] = {
     available.get((row, col)).get match {
-      case Nil => Some(99)
+      case Nil => None
       case x::Nil => Some(x)
       case x::y => None
     }
@@ -104,11 +104,7 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
 
   def isSolved(): Boolean = {
     for ((k,v) <- available) {
-      v match {
-        case Nil => return false
-        case x::Nil => Unit
-        case x::y => return false
-      }
+      if(v.length > 1) return false
     }
     return true
   }
@@ -168,6 +164,21 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
     new Board(board)
   }
 
+  def availableValues(board: Board): Int = {
+    var count = 0
+    for ((k,v) <- board.available) {
+      if(v.length > 1) {
+        count += v.length
+      }
+    }
+    count
+  }
+
+  def comparator(first: Board, second: Board): Boolean = {
+    if(availableValues(first) < availableValues(second)) true
+    else false
+  }
+
   // You can return any Iterable (e.g., Stream)
   def nextStates(): List[Board] = {
     if (isUnsolvable()) {
@@ -176,10 +187,6 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
     var altBoard = available
     var boardBoard = new Board(altBoard)
     var boardList: List[Board] = List()
-    // define some List       :: DONE
-    //   for each empty spot  :: DONE
-    //     and each empty value
-    //       append to list this.place(row, column, value)
     for((k,v) <- available) {
       var row = 0
       var col = 0
@@ -194,49 +201,25 @@ class Board(val available: Map[(Int, Int), List[Int]]) extends BoardLike[Board] 
         }
       }
     }
-    boardList
+    boardList.sortWith(comparator)
   }
 
-  // def nextValidStates(): List[Board] = { 
-  //   if (isUnsolvable) {
-  //     return List()
-  //   }
-  //   var altBoard = available
-  //   var boardBoard = new Board(altBoard)
-  //   var boardList: List[Board] = List()
-  //   for((k,v) <- available) {
-  //     var row = 0
-  //     var col = 0
-  //     k match {
-  //       case (a,b) => row = a; col = b
-  //     }
-  //     if(v.length > 1) {
-  //       for(num <- v) {
-  //         if(!boardBoard.place(row,col,num).isUnsolvable) {
-  //           boardList = boardList ++ List(boardBoard.place(row, col, num))
-  //         }
-  //       }
-  //     }
-  //     break
-  //   }
-  //   return boardList
-  // }
-
   def solve(): Option[Board] = {
-    if(isSolved) {
+    if(this.isSolved) {
       return Some(this)
     }
     else {
-      for(boards <- this.nextStates) {
-        if(boards.isUnsolvable) {
-          Unit
-        }
-        else{
-          boards.solve
+      for(nextBoard <- this.nextStates) {
+        nextBoard.solve match {
+          case Some(newBoard) => newBoard.solve match {
+            case Some(b) => return Some(b)
+            case None => ()
+          }
+          case None => ()
         }
       }
-      return None
     }
+    return None
   }
 
   //::::::::::::::::NOTHING LEFT TO CODE::::::::::::::::

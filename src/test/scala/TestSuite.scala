@@ -6,7 +6,7 @@ class TestSuite extends org.scalatest.FunSuite {
 	val fromCS121_2 = ".1.....2..3..9..1656..7...33.7..8..........89....6......6.254..9.5..1..7..3.....2"
 	val puz1 = ".43.8.25.6.............1.949....4.7....6.8....1.2....382.5.............5.34.9.71."
 	val puz2 = "2...8.3...6..7..84.3.5..2.9...1.54.8.........4.27.6...3.1..7.4.72..4..6...4.1...3"
-	val board01 = parse(".89742361.12986475647315289268493517493157826751268943936821754124579638875634192")
+	val board01 = parse(".89742361.12986475647315289.68..3517...157.2675126.943936821754124579638875634192")
 	val board_easy = parse(".6.3..8.4537.9.....4...63.7.9..51238.........71362..4.3.64...1.....6.5231.2..9.8.")
 	
 	test("parse") {
@@ -34,12 +34,12 @@ class TestSuite extends org.scalatest.FunSuite {
 		assert((board01.place(1,0,3)).valueAt(1,0) == Some(3))
 	}
 
-	// test("solved works for solved board") {
-	// 	val sudoku = board01
-	// 	println(sudoku.toString2)
-	// 	val Some(sudokuSolution) = board01.solve
-	// 	println(sudokuSolution.toString2)
-	// }
+	test("solved works for solved board") {
+		val sudoku = board01
+		println(sudoku.toString2)
+		val Some(sudokuSolution) = board01.solve
+		println(sudokuSolution.toString2)
+	}
 
 	test("solve for easy") {
 		val sudoku = board_easy
@@ -109,10 +109,9 @@ class TestSuite extends org.scalatest.FunSuite {
 		parse("....3..712..8.7..98..1.4..29.26..5......8......8..94.66..9.5..43..4.8..514..2....")
 		val sudoku20vHard = // solved
 		parse(".4.3.7.9.....9.1..89.1..5..2.6....1.9..6.8..5.1....6.9..9..5.71..8.6.....2.9.1.4.")
-		println(fromCS121_1.nextStates.length)
-		// val sudoku = fromCS121_1
-		// println(sudoku.toString2)
-		// val Some(sudokuSolution) = sudoku.solve
-		// println(sudokuSolution.toString2)
+		val sudoku = fromCS121_1
+		println(sudoku.toString2)
+		val Some(sudokuSolution) = sudoku.solve
+		println(sudokuSolution.toString2)
 	}
 }
