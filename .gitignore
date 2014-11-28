@@ -1,3 +1,11 @@
+# sbt files on OSX
+target/
+project/
+
+# sbt files on Windows
+project\
+target\
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -26,7 +34,8 @@ $RECYCLE.BIN/
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
